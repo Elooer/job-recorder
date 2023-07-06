@@ -4,7 +4,7 @@ import './index.less'
 const Head: React.FC = () => {
   return (
     <>
-      <div className="">求职时间线a</div>
+      <div className="">求职时间线</div>
     </>
   )
 }

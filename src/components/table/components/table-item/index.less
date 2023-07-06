@@ -1,0 +1,63 @@
+.item-box {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    line-height: 30px;
+    color: #666;
+    border-bottom: 1px solid #818181;
+
+    .id {
+        width: 100px;
+        text-align: center;
+        border-right: 1px solid #818181;
+    }
+
+    .company {
+        width: 250px;
+        text-align: center;
+        border-right: 1px solid #818181;
+    }
+
+    .process {
+        flex: 1;
+        text-align: center;
+        border-right: 1px solid #818181;
+        white-space: nowrap;
+        overflow: auto;
+    }
+
+    .state {
+        width: 100px;
+        text-align: center;
+        border-right: 1px solid #818181;
+    }
+
+    .operation {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100px;
+        text-align: center;
+
+        .edit,
+        .delete {
+            border: 0;
+            color: #fff;
+            height: 25px;
+            border-radius: 3px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .edit {
+            background-color: skyblue;
+            margin-right: 2px;
+            margin-left: 10px;
+        }
+
+        .delete {
+            background-color: #e53e3edb;
+            margin-right: 10px;
+        }
+    }
+}

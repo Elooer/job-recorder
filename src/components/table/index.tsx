@@ -1,20 +1,28 @@
 import React from 'react'
 import './index.less'
+import TableItem from './components/table-item'
+import { State } from './components/table-item'
 
 const list = [
   {
-    time: '2.11',
-    title: '投递',
+    id: 1,
+    company: '一号公司',
+    process: '未开始',
+    state: State.process,
   },
   {
-    time: '2.11',
-    title: '投递',
-  },
-  {
-    time: '2.11',
-    title: '投递',
+    id: 2,
+    company: '二号公司',
+    process: '爱到发fsdfaasdfsafsafsadfsafsafdsfdsfsfsadfasdfsdfsfafsdaaaaaaaaaasaaaaaaaaaaaaaaaaaaaaaaaaaaaaa烧发烧',
+    state: State.sucess,
+  }, {
+    id: 3,
+    company: '三号公司',
+    process: '发放时',
+    state: State.fail,
   },
 ]
+
 
 const Table: React.FC = () => {
   return (
@@ -24,6 +32,12 @@ const Table: React.FC = () => {
         <div className="company">公司</div>
         <div className="process">流程</div>
         <div className="state">状态</div>
+        <div className="operation">操作</div>
+      </div>
+      <div className="t-body">
+        {list.map(item => {
+          return <TableItem dataSource={item} key={item.id} />
+        })}
       </div>
     </>
   )

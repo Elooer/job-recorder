@@ -1,35 +1,52 @@
 .t-head {
   display: flex;
   justify-content: space-between;
-  height: 50px;
-  line-height: 50px;
-  background-color: #106cf5;
-  color: #fff;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #818181;
+  border-radius: 6px;
+  color: #666;
+  font-weight: 600;
 
   .id {
     width: 100px;
     text-align: center;
-    border-right: 1px solid #666;
+    border-right: 1px solid #818181;
   }
 
   .company {
-    width: 200px;
+    width: 250px;
     text-align: center;
-    border-right: 1px solid #666;
+    border-right: 1px solid #818181;
   }
 
   .process {
     flex: 1;
     text-align: center;
+    border-right: 1px solid #818181;
+    overflow-x: s;
   }
 
   .state {
     width: 100px;
     text-align: center;
-    border-left: 1px solid #666;
+    border-right: 1px solid #818181;
   }
 
-  // .id,.process,.state {
-  //   border: 1px solid #000;
-  // }
+  .operation {
+    width: 100px;
+    text-align: center;
+  }
+
+}
+
+.t-body {
+  border: 1px solid #818181;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.t-body:last-child {
+  border-bottom: 0;
+  font-size: 14px;
 }
