@@ -7,5 +7,61 @@
   height: 200px;
   background-color: #fff;
   border: 1px solid #ccc;
+  border-radius: 5px;
   padding: 20px;
+
+  .title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .input-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 130px;
+
+    input {
+      border: 1px solid #3388e6;
+      outline: none;
+      width: 210px;
+      height: 25px;
+      border-radius: 3px;
+    }
+
+    .select {
+      width: 215px;
+      height: 30px;
+      border-radius: 3px;
+      border: 1px solid #3388e6;
+      outline: none;
+    }
+  }
+
+  .btn-box {
+    display: flex;
+    justify-content: end;
+    box-sizing: content-box;
+
+    .btn {
+      width: 45px;
+      height: 30px;
+      color: #fff;
+      border: 0;
+      border-radius: 3px;
+      margin: 2px;
+      cursor: pointer;
+    }
+
+    .cancel {
+      color: #999;
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
+
+    .confirm {
+      background-color: #3388e6;
+    }
+  }
 }

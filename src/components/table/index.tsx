@@ -1,30 +1,47 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import './index.less'
 import TableItem from './components/table-item'
-import { State } from './components/table-item'
+import type { TableList } from '../../types/common'
+import initDB from '../../db'
+import IndexedDB from '../../utils/indexedDB'
 
-const list = [
+const list: TableList[] = [
   {
     id: 1,
     company: '一号公司',
     process: '未开始',
-    state: State.process,
+    state: '流程中',
   },
   {
     id: 2,
     company: '二号公司',
     process: '爱到发fsdfaasdfsafsafsadfsafsafdsfdsfsfsadfasdfsdfsfafsdaaaaaaaaaasaaaaaaaaaaaaaaaaaaaaaaaaaaaaa烧发烧',
-    state: State.sucess,
+    state: '已通过',
   }, {
     id: 3,
     company: '三号公司',
     process: '发放时',
-    state: State.fail,
+    state: '已结束',
   },
 ]
 
+const Table = () => {
+  const [tableList, setTableList] = useState<TableList[]>(list)
+  useEffect(() => {
+    initDB()
+  }, [])
 
-const Table: React.FC = () => {
+  useEffect(() => {
+    let data: any
+    async function getTableList() {
+      data = await IndexedDB.cursorGetData(window.db, 'record')
+    }
+    setTimeout(() => {
+      getTableList()
+      console.log(data)
+    }, 0)
+  }, [])
+
   return (
     <>
       <div className="t-head">
@@ -35,9 +52,9 @@ const Table: React.FC = () => {
         <div className="operation">操作</div>
       </div>
       <div className="t-body">
-        {list.map(item => {
+        {tableList.length ? tableList.map(item => {
           return <TableItem dataSource={item} key={item.id} />
-        })}
+        }) : <div className="no-record">暂无记录</div>}
       </div>
     </>
   )

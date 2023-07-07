@@ -1,20 +1,10 @@
 import { useState } from 'react'
 import './index.less'
 import Modal from '../../../modal'
-
-export enum State {
-    process = '流程中',
-    sucess = '已通过',
-    fail = '已结束'
-}
+import type { TableList } from '../../../../types/common'
 
 interface Props {
-    dataSource: {
-        id: number
-        company: string
-        process: string
-        state: State
-    }
+    dataSource: TableList
 }
 
 const TableItem = (props: Props) => {
@@ -29,6 +19,11 @@ const TableItem = (props: Props) => {
     const deleteMethod = () => {
 
     }
+
+    const confirmMethod = () => {
+        console.log('确认');
+        console.log(dataSource)
+    }
     return (
         <>
             <div className='item-box'>
@@ -41,7 +36,7 @@ const TableItem = (props: Props) => {
                     <button className='delete' onClick={deleteMethod}>删除</button>
                 </div>
             </div>
-            <Modal open={isOpen} />
+            <Modal open={isOpen} confirmHandler={confirmMethod} dataSource={dataSource}>编辑</Modal>
         </>
     )
 }
