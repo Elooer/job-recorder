@@ -1,3 +1,5 @@
+import { TableList } from "../types/common";
+
 interface AnyEvent {
   [k: string]: any;
 }
@@ -73,9 +75,9 @@ export function getDataByKey(db: IDBDatabase, storeName: string, key: number) {
 /**
  * 通过游标读取数据
  */
-export function cursorGetData(db: any, storeName: string) {
-  let list: any[] = []
-  let store = db.transaction(storeName, 'readwrite') // 事务
+export function cursorGetData(storeName: string): Promise<TableList[]> {
+  let list: TableList[] = []
+  let store = window.db.transaction(storeName, 'readwrite') // 事务
     .objectStore(storeName) // 仓库对象
   let request = store.openCursor() // 指针对象
   return new Promise((resolve, reject) => {
@@ -179,10 +181,10 @@ export function deleteDBAll(dbName: string) {
   let deleteRequest = window.indexedDB.deleteDatabase(dbName)
   return new Promise((resolve, reject) => {
     deleteRequest.onerror = function (event: AnyEvent) {
-      console.log('删除失败')
+      resolve(event)
     }
     deleteRequest.onsuccess = function (event: AnyEvent) {
-      console.log('删除成功')
+      reject(event)
     }
   })
 }
