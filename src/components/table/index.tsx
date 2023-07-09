@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import './index.less'
 import TableItem from './components/table-item'
 import type { TableList } from '../../types/common'

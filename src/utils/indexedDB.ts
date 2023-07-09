@@ -24,9 +24,8 @@ export function openDB(dbName: string, storeName: string, version = 1) {
       // 数据库创建或升级的时候会触发
       console.log('onupgradeneeded')
       window.db = event.target.result // 数据库对象
-      let objectStore: IDBObjectStore
       if (!window.db.objectStoreNames.contains(storeName)) {
-        objectStore = window.db.createObjectStore(storeName, { keyPath: 'id', autoIncrement: true }) // 创建表
+        window.db.createObjectStore(storeName, { keyPath: 'id', autoIncrement: true }) // 创建表
         // objectStore.createIndex('name', 'name', { unique: true }) // 创建索引 可以让你搜索任意字段
       }
     }
@@ -67,7 +66,7 @@ export function getDataByKey(db: IDBDatabase, storeName: string, key: number) {
     }
 
     request.onsuccess = function (event: AnyEvent) {
-      resolve(request.result)
+      resolve(event)
     }
   })
 }
@@ -176,7 +175,7 @@ export function updateDB(db: IDBDatabase, storeName: string, data: any) {
     }
 
     request.onerror = function (event: AnyEvent) {
-      resolve(event)
+      reject(event)
     }
   })
 }
@@ -193,7 +192,7 @@ export function deleteDB(db: IDBDatabase, storeName: string, id: number) {
     }
 
     request.onerror = function (event: AnyEvent) {
-      resolve(event)
+      reject(event)
     }
   })
 }
