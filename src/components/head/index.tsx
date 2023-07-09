@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './index.less'
 import Modal from '../modal'
 import IndexedDB from '../../utils/indexedDB'
-import { DBNAME, STORENAME } from '../../constant/db'
+import { STORENAME } from '../../constant/db'
 import { TableList } from '../../types/common'
 import indexedDB from '../../utils/indexedDB'
 
@@ -18,22 +18,22 @@ const Head = (props: Props) => {
     setIsOpen(!isOpen)
   }
 
-  const confirmMethod = async (record: TableList) => {
+  const confirmMethod = (record: TableList) => {
     console.log('确认');
     console.log(record);
 
-    const data = await IndexedDB.addData(window.db, STORENAME, record)
+    IndexedDB.addData(window.db, STORENAME, record)
     updateList()
     setIsOpen(false)
   }
 
-  const clearRecord = async () => {
+  const clearRecord = () => {
     let isConfirm = confirm('确定清空所有记录吗？')
     if (isConfirm) {
-      let res = await indexedDB.deleteDBAll(DBNAME)
-      console.log(res)
+      indexedDB.cursorDeleteData(STORENAME)
       updateList()
     }
+
   }
 
   const cancelMethod = () => {

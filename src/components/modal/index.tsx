@@ -28,6 +28,7 @@ const Modal = (props: Props) => {
 
   const confirmMethod = () => {
     confirmHandler(record)
+    setRecord({ company: '', process: '', state: '流程中' })
   }
 
   return <>
@@ -46,6 +47,7 @@ const Modal = (props: Props) => {
             {stateOptions.map(item => { return <option key={item}>{item}</option> })}
           </select>
         </div>
+        <div className="tip">流程间请仅用一个空格隔开例如：3.1一面 3.3二面</div>
       </div>
       <div className="btn-box">
         <button className="btn cancel" onClick={cancelMethod}>取消</button>

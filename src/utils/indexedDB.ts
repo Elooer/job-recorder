@@ -98,6 +98,31 @@ export function cursorGetData(storeName: string): Promise<TableList[]> {
 }
 
 /**
+ * 通过游标删除数据
+ */
+export function cursorDeleteData(storeName: string) {
+  const list: any[] = []
+  const store = window.db.transaction(storeName, "readwrite").objectStore(storeName);
+  let request = store.openCursor()
+  return new Promise((resolve, reject) => {
+    request.onsuccess = (event: AnyEvent) => {
+      const cursor = event.target.result;
+      if (cursor) {
+        const request = cursor.delete();
+        list.push(request)
+        cursor.continue();
+      } else {
+        resolve(list)
+      }
+    }
+    request.onerror = (event: AnyEvent) => {
+      reject(event)
+    }
+  })
+
+}
+
+/**
  * 通过索引读取数据
  */
 export function getDataByIndex(db: IDBDatabase, storeName: string, indexName: string, indexValue: string) {
@@ -202,6 +227,7 @@ export default {
   addData,
   getDataByKey,
   cursorGetData,
+  cursorDeleteData,
   getDataByIndex,
   cursorGetDataByIndex,
   updateDB,
